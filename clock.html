@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Đồng hồ đếm ngược</title>
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="clock.css">
+
+</head>
+<body>
+	
+	<div class="header">
+		<div class="clock">
+			<span id="text">Còn</span>
+			<div class="countdown">
+				<div id="date">
+					<p id="date_number"></p>
+					<p id="date_text">NGÀY</p>					
+				</div>
+				<div id="hours">
+					<p id="hours_number">24</p>
+					<p id="hours_text">GIỜ</p>	
+				</div>
+				<div id="minute">
+					<p id="minute_number">60</p>
+					<p id="minute_text">PHÚT</p>	
+				</div>
+				<div id="paper">
+					<p id="paper_number">56</p>
+					<p id="paper_text">GIÂY</p>	
+				</div>
+			</div>
+		</div>
+
+		<div class="text_header">
+			<a href="#" class="link_header">Giới thiệu</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Quy trình</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Số liệu</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Lộ trình</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Ban tổ chức</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Đối tác</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Tài trợ</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Tin tức</a>
+			<span class="drash_header" class="link_header">&nbsp|&nbsp</span>
+			<a href="#">Doanh nghiệp</a>
+		</div>
+	</div>
+	<div class="header_web">
+		<div class="logo">
+			<img src="https://st2.onlinefriday.vn/i/v6/graphics/logo_site.png">
+		</div>
+		<div class="container">
+	    <div class="row">    
+	        <div class="col-xs-8 col-xs-offset-2">
+			    <div class="input-group">
+	                <div class="input-group-btn search-panel">
+	                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	                    	<span id="search_concept">Tất cả</span> <span class="caret"></span>
+	                    </button>
+	                   
+	                </div>
+	                <input type="hidden" name="search_param" value="all" id="search_param">         
+	                <input type="text" class="form-control" name="x" placeholder="Tìm sản phẩm của bạn...">
+	                <span class="input-group-btn">
+	                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+	                </span>
+	            </div>
+	        </div>
+		</div>
+		</div>
+	</div>
+	<div class="catalog">
+		<span id="catalog_text">Xu hướng tìm kiếm:</span>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp thời trang</b></a>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp iphone</b></a>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp laptop</b></a>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp đồng hồ</b></a>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp httc</b></a>
+		<a href="#" class="catalog_link"><b>&nbsp&nbsp&nbsp&nbsp thực phẩm chức năng</b></a>
+	</div>
+
+	<script type="text/javascript">
+		
+		var fromTime = new Date();
+		var toTime = new Date(2016,9,22,00,00,00);
+
+		var fromDate = fromTime.getDate();		
+		var fromSeconds = fromTime.getSeconds();
+		var fromHours = fromTime.getHours();
+		var fromMinutes = fromTime.getMinutes();
+
+		var toDate = toTime.getDate();
+		var toSeconds = toTime.getSeconds();
+		var toHours = toTime.getHours();
+		var toMinutes = toTime.getMinutes();
+
+		var seconds;
+		var minutes;
+		var hours;
+		var date;
+
+		if(toSeconds >= fromSeconds){
+ 	 		seconds = toSeconds - fromSeconds;
+ 	 	}else{
+ 	 		seconds = 60 + toSeconds - fromSeconds;
+ 	 		toMinutes = toMinutes - 1;
+ 	 	}
+
+ 	 	if(toMinutes >= fromMinutes){
+ 	 		minutes = toMinutes - fromMinutes;
+ 	 	}else{
+ 	 		minutes = 60 + toMinutes - fromMinutes;
+ 	 		toHours = toHours - 1;
+ 	 	}
+
+ 	 	if(toHours >= fromHours){
+ 	 		hours = toHours - fromHours;
+ 	 	}else{
+ 	 		hours = 24 + toHours - fromHours;
+ 	 		toDate = toDate - 1;
+ 	 	}
+
+ 	 	date = toDate - fromDate;
+
+
+		function start(){
+			
+			if(date == 0 && hours == 0 && minutes == 0 && seconds == 0){
+ 	 			alert("Chúc mừng năm mới..........")
+ 	 		}
+
+			if(seconds == -1){
+				minutes = minutes - 1;
+				seconds = 59;
+			}
+
+			if(minutes == -1){
+				hours = hours - 1;
+				minutes = 59;
+			}
+
+			if(hours == -1){
+				date = date - 1;
+				hours = 24;
+			}
+
+			document.getElementById("date_number").innerHTML = date;
+			document.getElementById("hours_number").innerHTML = hours;
+			document.getElementById("minute_number").innerHTML = minutes;
+			document.getElementById("paper_number").innerHTML = seconds;
+
+
+			setTimeout(function(){
+        		seconds = seconds - 1;
+        		start();
+    		}, 1000);
+
+		}	
+
+		start();
+	</script>
+
+</body>
+</html>
